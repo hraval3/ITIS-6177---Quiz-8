@@ -1,0 +1,191 @@
+{
+"swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Quiz 8",
+    "description": "API endpoints along with description using Swagger",
+    "license": {
+      "name": "Harsh Raval"
+    }
+  },
+  "host": "157.230.86.10:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Harsh Raval"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+    "paths": {
+        "/orders_on_date":{
+            "get": {
+                "summary": "Return order on a particular date",
+                "produces": [
+                "application/json"
+             ],
+            "responses": {
+            "200": {
+                "description": "Status 200 - successfully retreived data"
+                }
+            }
+        }
+    },
+    "/advanceamount":{
+        "get": {
+            "summary": "Advance amount",
+            "produces": [
+            "application/json"
+         ],
+        "responses": {
+        "200": {
+            "description": "Status 200 - successfully retrieved data"
+            }
+        }
+    }
+},
+    "/avg_advance_amt":{
+        "get": {
+            "summary": "Average Advance amount",
+            "produces": [
+            "application/json"
+        ],
+        "responses": {
+        "200": {
+            "description": "Status 200 - successfully retrieved data"
+            }
+        }
+    }
+},
+
+        "/food/{item_id}": {
+            "delete": {
+              "summary": "Send a delete request to delete row from the table",
+              "parameters": [
+                  {
+                      "name": "item_id",
+                      "in": "path",
+                      "description": "Post Object",
+                      "required": true,
+                      "type":"string"
+                  }
+              ],
+              "responses": {
+                  "200": {
+                      "description": "Item Deleted"
+                      },
+                "404": {
+                      "description": "Item Does not exists"
+                      }
+                  }
+            }
+        },
+      "/food": {
+      "post": {
+        "summary": "Send a post request to add a new row into the table",
+        "parameters": [
+            {
+                "name": "body",
+                "in": "body",
+                "description": "Post Object",
+                "required": true,
+                "schema": {
+                    "$ref": "#/definitions/Post"
+                }
+            }
+        ],
+        "responses": {
+            "204": {
+                      "description": "Item Added"
+                      },
+                "400": {                                                                                 "description": "Already Exists"                                                    }
+            }
+      },
+    "put": {
+        "summary": "Update a food",
+        "description": "Update a food",
+        "parameters": [
+            {
+                "name": "body",
+                "in": "body",
+                "description": "Food data",
+                "required": true,
+                "schema": {
+                    "$ref": "#/definitions/Post"
+                }
+            }
+        ],
+        "responses": {
+            "200": {
+                "description": "All Ok!"
+                }
+            }
+    }
+    },
+    "/edit_food_company": {
+        "patch": {
+          "summary": "Patch Update for food",
+          "parameters": [
+              {
+                  "name": "body",
+                  "in": "body",
+                  "description": "Patch  Object",
+                  "required": true,
+                  "schema": {
+                      "$ref": "#/definitions/PatchPost"
+                  }
+              }
+          ],
+          "responses": {
+              "200": {
+                  "description": "Success"
+                  },
+                "404": {
+                  "description": "Item not found"
+                  }
+              }
+        },
+
+    "consumes": [
+      "application/json"
+    ]
+  }
+},
+"definitions": {
+    "Post": {
+        "type": "object",
+        "required": ["item_id"],
+        "properties": {
+            "item_id": {
+                "type": "integer"
+            },
+
+            "item_name": {
+                "type": "string"
+            },
+
+            "item_unit": {
+                "type": "string"
+            },
+
+            "company_id": {
+                "type": "integer"
+            }
+        }
+    },
+    "PatchPost": {
+        "type": "object",
+        "properties": {
+            "item_id": {
+                "type": "string"
+
+            },
+            "company_id": {
+                "type": "string"
+
+            }
+        }
+    }
+  }
+}
